@@ -7,6 +7,7 @@
 #include <fcntl.h>
 #include <algorithm>
 #include <set>
+#include <postgresql/libpq-fe.h>
 using namespace std;
 
 int main()
