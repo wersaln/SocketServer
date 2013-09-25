@@ -1,0 +1,16 @@
+
+# Do not allow in source build.
+if ("${PROJECT_SOURCE_DIR}" STREQUAL "${PROJECT_BINARY_DIR}")
+  message(FATAL_ERROR "In-source builds are not allowed.")
+endif ("${PROJECT_SOURCE_DIR}" STREQUAL "${PROJECT_BINARY_DIR}")
+
+# Build type check.
+if (NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Debug CACHE STRING
+    "Choose the type of build, options are: Debug Release."
+    FORCE)
+endif(NOT CMAKE_BUILD_TYPE)
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_ROOT_BINARY_DIR}/${CMAKE_BUILD_TYPE})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_ROOT_BINARY_DIR}/${CMAKE_BUILD_TYPE}/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_ROOT_BINARY_DIR}/${CMAKE_BUILD_TYPE}/lib)

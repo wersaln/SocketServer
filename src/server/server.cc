@@ -5,9 +5,10 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <fcntl.h>
+
 #include <algorithm>
 #include <set>
-#include <postgresql/libpq-fe.h>
+
 using namespace std;
 
 int main()
@@ -23,12 +24,20 @@ int main()
         perror("socket");
         exit(1);
     }
-    
+
     fcntl(listener, F_SETFL, O_NONBLOCK);
-    
+
     addr.sin_family = AF_INET;
     addr.sin_port = htons(3425);
     addr.sin_addr.s_addr = INADDR_ANY;
+
+    // options
+    int on = 1;
+    printf("setsockopt(SO_REUSEADDR)\n");
+    if (setsockopt(listener, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on)) < 0) {
+          perror("setsockopt(SO_REUSEADDR) failed");
+    }
+
     if(bind(listener, (struct sockaddr *)&addr, sizeof(addr)) < 0)
     {
         perror("bind");
@@ -36,7 +45,7 @@ int main()
     }
 
     listen(listener, 2);
-    
+
     set<int> clients;
     clients.clear();
     printf("start to listen\n");
@@ -62,7 +71,7 @@ int main()
             perror("select");
             exit(3);
         }
-        
+
         // Определяем тип события и выполняем соответствующие действия
         if(FD_ISSET(listener, &readset))
         {
@@ -74,7 +83,7 @@ int main()
                 perror("accept");
                 exit(3);
             }
-            
+
             fcntl(sock, F_SETFL, O_NONBLOCK);
 
             clients.insert(sock);
@@ -101,6 +110,6 @@ int main()
             }
         }
     }
-    
+
     return 0;
 }
