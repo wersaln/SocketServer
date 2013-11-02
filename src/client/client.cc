@@ -37,7 +37,9 @@ int main()
     recv(sock, buf, sizeof(message), 0);
 
     printf(buf);
-    close(sock);
+    while (true) {
+    }
+    //close(sock);
 
     return 0;
 }

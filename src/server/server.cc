@@ -17,7 +17,7 @@ int main()
     struct sockaddr_in addr;
     char buf[1024];
     int bytes_read;
-
+    int n = 0;
     listener = socket(AF_INET, SOCK_STREAM, 0);
     if(listener < 0)
     {
@@ -66,7 +66,7 @@ int main()
 
         // Ждём события в одном из сокетов
         int mx = max(listener, *max_element(clients.begin(), clients.end()));
-        if(select(mx+1, &readset, NULL, NULL, &timeout) <= 0)
+        if(select(mx+1, &readset, NULL, NULL, NULL) <= 0)
         {
             perror("select");
             exit(3);
@@ -76,7 +76,9 @@ int main()
         if(FD_ISSET(listener, &readset))
         {
             // Поступил новый запрос на соединение, используем accept
-            printf("new connection\n");
+            ++n;
+            printf("new connection %d\n", n);
+
             int sock = accept(listener, NULL, NULL);
             if(sock < 0)
             {
