@@ -1,17 +1,47 @@
 #include <sys/types.h>
 #include <sys/socket.h>
+#include <sys/stat.h>
 #include <sys/time.h>
 #include <netinet/in.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <fcntl.h>
-
+#include <errno.h>
+#include <fcntl.h>
+#include <syslog.h>
 #include <algorithm>
 #include <set>
 
 using namespace std;
 
-int main()
+int Daemon(void);
+
+int main(int argc, char* argv[]) {
+
+    pid_t parpid, sid;
+
+    parpid = fork(); //создаем дочерний процесс
+    if(parpid < 0) {
+        exit(1);
+    } else if(parpid != 0) {
+        exit(0);
+    }
+    umask(0);//даем права на работу с фс
+    sid = setsid();//генерируем уникальный индекс процесса
+    if(sid < 0) {
+        exit(1);
+    }
+    if((chdir("/")) < 0) {//выходим в корень фс
+        exit(1);
+    }
+    close(STDIN_FILENO);//закрываем доступ к стандартным потокам ввода-вывода
+    close(STDOUT_FILENO);
+    close(STDERR_FILENO);
+
+    return Daemon();
+}
+
+int Daemon()
 {
     int listener;
     struct sockaddr_in addr;
