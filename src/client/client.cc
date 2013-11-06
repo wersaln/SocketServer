@@ -47,9 +47,8 @@ int main()
     recv(sock, buf, sizeof(message), 0);
 
     std::cout << buf;
-    while (true) {
-    }
-    //close(sock);
+    std::cout << "Success recv";
+    close(sock);
 
     return 0;
 }
