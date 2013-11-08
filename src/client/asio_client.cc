@@ -91,8 +91,8 @@ private:
 
 int main(int argc, char* argv[]) {
     // connect several clients
-    ip::tcp::endpoint ep( ip::address::from_string("188.40.161.43"), 3425);
-    //ip::tcp::endpoint ep( ip::address::from_string("127.0.0.1"), 3425);
+    //ip::tcp::endpoint ep( ip::address::from_string("188.40.161.43"), 3425);
+    ip::tcp::endpoint ep( ip::address::from_string("127.0.0.1"), 3425);
 
     //char* messages[] = { "John says hi", "so does James", "Lucy just got home", 0 };
     size_t test_num = 50;

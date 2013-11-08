@@ -1,16 +1,22 @@
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
-set(NAME socket_client)
+set(NAME simple_client)
 add_executable(${NAME}
-  client.cc
+  simple_client.cc
 )
 
-set(NAME2 asio_client)
+set(NAME2 multiconnect_client)
 add_executable(${NAME2}
+  multiconnect_client.cc
+)
+
+
+set(NAME3 asio_client)
+add_executable(${NAME3}
   asio_client.cc
 )
 
-target_link_libraries(${NAME2}
+target_link_libraries(${NAME3}
   ${Boost_DATE_TIME_LIBRARY}
   ${Boost_SYSTEM_LIBRARY}
   ${Boost_REGEX_LIBRARY}

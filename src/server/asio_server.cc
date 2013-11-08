@@ -90,8 +90,7 @@ void handle_accept(talk_to_client::ptr client, const boost::system::error_code &
 
 
 int main(int argc, char* argv[]) {
-    std::cout << x;
-    std::cout << "server\n";
+    std::cout << "server started.\n";
     talk_to_client::ptr client = talk_to_client::new_();
     acceptor.async_accept(client->sock(), boost::bind(handle_accept,client,_1));
     service.run();

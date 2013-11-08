@@ -1,13 +1,18 @@
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
-set(NAME socket_server)
+set(NAME select_server)
 add_executable(${NAME}
-  server.cc
+  select_server.cc
 )
 
 set(NAME2 asio_server)
 add_executable(${NAME2}
   asio_server.cc
+)
+
+set(NAME3 poll_server)
+add_executable(${NAME3}
+  poll_server.cc
 )
 
 target_link_libraries(${NAME2}

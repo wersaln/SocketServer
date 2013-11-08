@@ -22,6 +22,8 @@ int main()
     struct sockaddr_in addr;
     struct hostent *server;
     server = gethostbyname("188.40.161.43");
+    //server = gethostbyname("127.0.0.1");
+
     sock = socket(PF_INET, SOCK_STREAM, 0);
     if(sock < 0)
     {
