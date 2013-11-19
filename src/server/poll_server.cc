@@ -24,7 +24,7 @@ main (int argc, char *argv[])
   char   buffer[80];
   struct sockaddr_in   addr;
   int    timeout;
-  struct pollfd fds[200];
+  static struct pollfd fds[20000];
   int    nfds = 1, current_size = 0, i, j;
 
   /*************************************************************/

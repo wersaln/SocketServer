@@ -19,6 +19,12 @@ set(NAME4 event_server)
 add_executable(${NAME4}
   event_server.cc
 )
+
+set(NAME5 epoll_server)
+add_executable(${NAME5}
+  epoll_server.cc
+)
+
 target_link_libraries(${NAME4}
   -levent
 )

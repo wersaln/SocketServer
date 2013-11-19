@@ -13,7 +13,7 @@
 #include <set>
 #include <iostream>
 
-const int NMAX = 1000;
+const int NMAX = 10000;
 
 char message[] = "Hello there!\n";
 char buf[sizeof(message)];
