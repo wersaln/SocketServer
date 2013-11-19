@@ -25,6 +25,8 @@ set(Boost_USE_MULTITHREADED ON)
 # Does not replace the standard library.
 set(Boost_USE_STATIC_RUNTIME OFF)
 
+find_package(LibEvent)
+
 message(STATUS "Searching for Boost...")
 find_package(Boost 1.52 COMPONENTS
   date_time

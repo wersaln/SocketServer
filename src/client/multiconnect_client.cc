@@ -23,8 +23,8 @@ int main()
     int sock[NMAX];
     struct sockaddr_in addr;
     struct hostent *server;
-    server = gethostbyname("188.40.161.43");
-    //server = gethostbyname("127.0.0.1");
+    //server = gethostbyname("188.40.161.43");
+    server = gethostbyname("127.0.0.1");
     addr.sin_family = PF_INET;
     addr.sin_port = htons(3425);
     //addr.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
@@ -48,7 +48,7 @@ int main()
             exit(2);
         }
     }
-    sleep(5000);
+    //sleep(5000);
     for (size_t i = 0; i < NMAX; ++i) {
         send(sock[i], message, sizeof(message), 0);
     }

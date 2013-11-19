@@ -15,6 +15,13 @@ add_executable(${NAME3}
   poll_server.cc
 )
 
+set(NAME4 event_server)
+add_executable(${NAME4}
+  event_server.cc
+)
+target_link_libraries(${NAME4}
+  -levent
+)
 target_link_libraries(${NAME2}
   ${Boost_SYSTEM_LIBRARY}
   ${Boost_REGEX_LIBRARY}

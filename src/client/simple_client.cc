@@ -13,7 +13,7 @@
 #include <set>
 #include <iostream>
 
-char message[] = "Hello there!\n";
+char message[] = "  Hello there!";
 char buf[sizeof(message)];
 
 int main()
@@ -21,8 +21,8 @@ int main()
     int sock;
     struct sockaddr_in addr;
     struct hostent *server;
-    server = gethostbyname("188.40.161.43");
-    //server = gethostbyname("127.0.0.1");
+    //server = gethostbyname("188.40.161.43");
+    server = gethostbyname("127.0.0.1");
 
     sock = socket(PF_INET, SOCK_STREAM, 0);
     if(sock < 0)
@@ -44,7 +44,11 @@ int main()
         perror("connect");
         exit(2);
     }
-
+    char header[2];
+    int body_length = strlen(message);
+    int header_size = 2;
+    memcpy(message, &body_length, sizeof(header));
+    //send(sock, header, sizeof(header), 0);
     send(sock, message, sizeof(message), 0);
     recv(sock, buf, sizeof(message), 0);
 
