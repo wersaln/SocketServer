@@ -47,32 +47,30 @@ namespace obj {
     int cmd;
   };
   // server only
-  struct Ready : Command {
-    Ready() { cmd = CMD_USER_READY; }
-    int id;
-  };
+
   struct Players : Command {
     Players() { cmd = CMD_GROUP_USERS; }
-    std::vector<User> users;
+    std::vector<User> users_;
   };
   struct Positions :Command {
     Positions() { cmd = CMD_USERS_POSITIONS; }
-    std::vector<UserPosition> users;
+    std::vector<UserPosition> users_;
   };
   struct PlayerAdd :Command {
     PlayerAdd() { cmd = CMD_USER_ADD; }
-    User add_user;
+    User add_user_;
   };
   struct Player : Command {
-    int id;
+    int id_;
   }; // do not send
+  struct Ready : Player {
+    Ready() { cmd = CMD_USER_READY; }
+  };
   struct PlayerExit : Player {
     PlayerExit() { cmd = CMD_USER_EXIT; }
-    int id;
   };
   struct YourID : Player {
     YourID() { cmd = CMD_YOUR_ID; }
-    int id;
   };
 
 
