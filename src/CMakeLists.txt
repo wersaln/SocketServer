@@ -3,3 +3,4 @@ set(FRAMEWORK_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR})
 
 add_subdirectory(server)
 add_subdirectory(client)
+add_subdirectory(protocol)

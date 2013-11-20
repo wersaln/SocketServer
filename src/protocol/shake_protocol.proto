@@ -1,0 +1,23 @@
+package shake_protocol;
+
+message Command {
+  required uint32 cmd = 1;
+  optional string name = 2;
+  optional uint32 id = 3;
+  
+  message User {
+    required uint32 id = 1;
+    required string name = 2;
+    required uint32 color = 3;
+    required bool ready = 4;
+  }
+
+  message UserPosition {
+    required uint32 id = 1;
+    required uint32 count = 2;
+    required bool finished = 3;
+  }
+  
+  repeated User users = 4;
+  repeated UserPosition  users_pos = 5;
+}
