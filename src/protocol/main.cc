@@ -28,6 +28,7 @@ int main() {
   obj::PlayerAdd p;
   p.add_user_ = obj::User(0, "Nick", 2, 1);
   std::string str = Protocol::Serialize(p);
+
   for (size_t i = 0; i < str.size(); ++i) {
     std::cout << (int)str[i];
     if (str[i] >= 'A' && str[i] <= 'Z' || str[i] >= 'a' && str[i] <= 'z')

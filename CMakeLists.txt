@@ -41,6 +41,7 @@ find_package(Boost 1.52 COMPONENTS
   timer
   chrono
   thread
+  atomic
 )
 
 message(STATUS "Boost components summary:")
@@ -55,6 +56,7 @@ message(STATUS "  regex: ${Boost_REGEX_LIBRARY}")
 message(STATUS "  context: ${Boost_CONTEXT_LIBRARY}")
 message(STATUS "  timer: ${Boost_TIMER_LIBRARY}")
 message(STATUS "  chrono: ${Boost_CHRONO_LIBRARY}")
+message(STATUS "  atomic: ${Boost_ATOMIC_LIBRARY}")
 
 if (Boost_FOUND)
   message(STATUS "Boost library dirs: " ${Boost_LIBRARY_DIRS})
